@@ -4,7 +4,7 @@ class WikisController < ApplicationController
   end
 
   def show
-    @wiki = current_user.wikis.find(params[:id])  
+    @wiki = Wiki.find(params[:id])  
   end
 
   def new
@@ -12,11 +12,13 @@ class WikisController < ApplicationController
   end
 
   def edit
-    @wiki = current_user.wikis
+    @wiki = Wiki.find(params[:id])  
+    authorize @wiki
   end
 
   def create
      @wiki = current_user.wikis.new(wiki_params)
+     authorize @wiki
     
     if @wiki.save
       flash[:success] = "Wiki created!"
@@ -27,7 +29,17 @@ class WikisController < ApplicationController
   end
 
   def update
-    @wiki = current_user.wikis.find(params[:id])
+    @wiki = Wiki.find(params[:id])
+    authorize @wiki
+    
+    if @wiki.update_attributes(wiki_params)
+      flash[:notice] = "The wiki was updated"
+      redirect_to @wiki
+    else
+      flash[:error] = "The wiki was not updated"
+      render :edit
+    end
+      
   end
 
   def destroy
