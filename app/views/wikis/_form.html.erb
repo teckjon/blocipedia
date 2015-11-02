@@ -1,6 +1,13 @@
 <%= form_for @wiki do |f| %>
    <% if @wiki.errors.any? %>
 
+<% if current_user.admin? || current_user.premium? %>
+  <div class="form-group">
+    <%= f.label :private, class: 'checkbox' do %>
+      <%= f.check_box :private %> Private wiki
+    <% end %>
+  </div>
+<% end %>
      <div class="alert alert-danger">
 
        <h4><%= pluralize(@wiki.errors.count, "error") %>.</h4>
