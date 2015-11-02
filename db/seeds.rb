@@ -5,3 +5,24 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+ require 'faker'
+ 
+  5.times do
+   User.create!(
+     email:   Faker::Internet.email,
+     password: Faker::Internet.password
+   )
+ end
+ 
+ users = User.all
+ 
+  25.times do
+  Wiki.create!(
+     title: Faker::Lorem.words, 
+     body: Faker::Lorem.sentence
+     )
+ end
+ Wiki = Wiki.all
+
+ puts "#{User.count} users created"
+ puts "#{Wiki.count} users created"
