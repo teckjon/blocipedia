@@ -27,7 +27,8 @@ gem 'devise'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'pundit'
 gem 'bootstrap-sass'
-
+gem 'stripe'
+gem 'figaro'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
