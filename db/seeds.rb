@@ -18,7 +18,7 @@
  
   25.times do
   Wiki.create!(
-     title: Faker::Lorem.words, 
+     title: Faker::Lorem.words.join(" "), 
      body: Faker::Lorem.sentence
      )
  end
