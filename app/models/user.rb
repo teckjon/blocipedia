@@ -13,5 +13,15 @@ class User < ActiveRecord::Base
     self.role ||= :standard
   end
 
+  def premium?
+    self.role ||= :premium
+  end
   
+  def admin?
+    self.role ||= :admin
+  end
+  
+  def make_wikis_public
+    wikis.update_all(private: false)
+  end
 end

@@ -36,4 +36,15 @@ class ChargesController < ApplicationController
      amount: 15_00
    }
  end
+ 
+ def unsubscribe
+  # customer = Stripe::Customer.retrieve(current_user.customer_id)
+  
+  # subscription_id = customer.subscriptions.data.first.id
+  # customer.subscriptions.retrieve(subscription_id).delete
+  current_user.standard!
+  
+  current_user.make_wikis_public
+  redirect_to edit_user_registration_path
+ end
 end

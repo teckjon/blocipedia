@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :wikis
   get 'welcome/index'
 resources :charges, only: [:new, :create]
+  get 'charges/unsubscribe', to: 'charges#unsubscribe', as: :unsubscribe_charge
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
