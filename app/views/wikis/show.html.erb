@@ -1,5 +1,5 @@
 <h1><%= @wiki.title %></h1>
-<p><%= @wiki.body %></p>
+<p><%= markdown_to_html(@wiki.body) %></p>
 <p><%= time_ago_in_words(@wiki.created_at) %></p>
 <div class= "col-md-4">
     <%= link_to("New Wiki", new_wiki_path, class: 'btn btn-success') if policy(Wiki.new) %>
