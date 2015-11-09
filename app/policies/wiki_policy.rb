@@ -6,8 +6,8 @@ class WikiPolicy < ApplicationPolicy
     def update
         user.present? && (user.admin? || record.user == user || !record.private? )
     end
-    
-       class Scope
+      
+     class Scope
      attr_reader :user, :scope
  
      def initialize(user, scope)

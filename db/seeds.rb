@@ -16,13 +16,13 @@
  
  users = User.all
  
-  25.times do
+ 25.times do
   Wiki.create!(
      title: Faker::Lorem.words.join(" "), 
-     body: Faker::Lorem.sentence
+     body: Faker::Lorem.sentence,
+     user: users.sample
      )
  end
- Wiki = Wiki.all
 
  puts "#{User.count} users created"
- puts "#{Wiki.count} users created"
+ puts "#{Wiki.count} wikis created"
