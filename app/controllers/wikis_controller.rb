@@ -1,7 +1,7 @@
 class WikisController < ApplicationController
-  def index
-    @wikis = Wiki.all
-  end
+   def index
+     @wiki = policy_scope(Wiki)
+   end
 
   def show
     @wiki = Wiki.find(params[:id])  
