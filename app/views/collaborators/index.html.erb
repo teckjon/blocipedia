@@ -6,20 +6,12 @@
             <td><%= user.email %></td>
             <td>
                 <% if @wiki.users.include? user %>
-                   <%= link_to "Remove Collaborator", wiki_collaborators_path(@wiki), method: :destroy, class: 'btn btn-danger', data: { confirm: 'Do you want to remove Collaborator?' }  %>
-                <% else %>
                    <%= link_to "Add Collaborator", wiki_collaborators_path(@wiki), class: 'btn btn-success' %>
+                <% else %>
+                   <%= link_to "Remove Collaborator", wiki_collaborator_path(@wiki, @wiki.collaborator_for(user)), method: :delete, class: 'btn btn-danger', data: { confirm: 'Do you want to remove Collaborator?' }  %>
                 <% end %>  
             </td>
     <% end %>
-        <% @users.each do |user| %>
-    <tr>
-        <td><%= @wiki.collaborators %></td>
-        <td>
-            <%= link_to "Remove Collaborator", wiki_collaborators_path(@wiki), method: :destroy, class: 'btn btn-danger', data: { confirm: 'Do you want to remove Collaborator?' }  %>
-            <% end %>
-        </td>
-    </tr>
+    
 </table>
 
- 

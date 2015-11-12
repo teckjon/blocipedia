@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :wikis do
-    resources :collaborators, only: [:create, :destroy, :index]
+   resources :collaborators, only: [:create, :destroy, :index]
   end
   get 'welcome/index'
   get 'wikis/public'
