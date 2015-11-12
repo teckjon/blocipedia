@@ -1,19 +1,17 @@
 class CollaboratorsController < ApplicationController
-  before_action :set_collaborator, only: [:show, :edit, :update, :destroy]
+
   before_action :set_wiki
   
   def index
     @users = User.all
-    @collaborators = @wiki.collaborators
   end
   
   def create  
-    @collaborator = Collaborator.new 
-
+    @collaborator = @wiki.collaborators.new(user_id: params[:user_id])
    
    if @collaborator.save
       flash[:notice] = "Collaborator was added to this wiki."
-      redirect_to edit_wiki_path(wiki)
+      redirect_to wiki_collaborators_path(@wiki)
     else
       flash[:error] = "Collaborator was not added. Please try again."
       render :show
@@ -21,18 +19,17 @@ class CollaboratorsController < ApplicationController
   end
   
   def destroy
-    @wiki = current_user.wiki.find(params[:id])
-    @collaborator = wiki.collaborator.find(params[:id])
+   @collaborator = @wiki.collaborators.find(params[:id])
 
    
     if @collaborator.destroy
       flash[:notice] = "Collaborator was removed from this wiki."
-      redirect_to edit_wiki_path(wiki)
+
     else
       flash[:error] = "Collaborator was not removed. Please try again."
-      redirect_to edit_wiki_path(wiki)
+      
     end     
-
+  redirect_to wiki_collaborators_path(@wiki)
   end    
 
   
@@ -41,7 +38,4 @@ class CollaboratorsController < ApplicationController
     @wiki = Wiki.find(params[:wiki_id])
   end
 
-  def collaborator_params
-    params.require(:collaborator).permit(:user_id, :wiki_id)
-  end  
 end

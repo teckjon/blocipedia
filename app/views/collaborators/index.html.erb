@@ -6,9 +6,9 @@
             <td><%= user.email %></td>
             <td>
                 <% if @wiki.users.include? user %>
-                   <%= link_to "Add Collaborator", wiki_collaborators_path(@wiki), class: 'btn btn-success' %>
+                   <%= link_to "Remove Collaborator", wiki_collaborator_path(@wiki, @wiki.collaborator_for(user)), method: :delete, class: 'btn btn-danger'  %>
                 <% else %>
-                   <%= link_to "Remove Collaborator", wiki_collaborator_path(@wiki, @wiki.collaborator_for(user)), method: :delete, class: 'btn btn-danger', data: { confirm: 'Do you want to remove Collaborator?' }  %>
+                   <%= link_to "Add Collaborator", wiki_collaborators_path(@wiki, user_id: user.id), method: :post, class: 'btn btn-success' %>                  
                 <% end %>  
             </td>
     <% end %>

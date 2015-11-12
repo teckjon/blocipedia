@@ -24,5 +24,7 @@
      )
  end
 
+ wikis = Wiki.all
+
  puts "#{User.count} users created"
  puts "#{Wiki.count} wikis created"
